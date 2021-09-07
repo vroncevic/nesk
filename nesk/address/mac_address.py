@@ -20,7 +20,15 @@
      Created API for getting/setting/checking MAC address.
 """
 
+import sys
+from dataclasses import dataclass
 from re import compile, search
+
+try:
+    from nesk.address.mac_regex import MacRegex
+except ImportError as ats_error_message:
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/nesk'
@@ -32,6 +40,7 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
+@dataclass
 class MACAddress:
     """
         Defined class MACAddress with attribute(s) and method(s).
@@ -39,35 +48,13 @@ class MACAddress:
         It defines:
 
             :attributes:
-                | MAC_REGEX_CHECK_1 - regex for checking MAC address format.
-                | MAC_REGEX_CHECK_2 - regex for checking MAC address format.
-                | MAC_REGEX_CHECK_3 - regex for checking MAC address format.
-                | MAC_REGEX_CHECK_4 - regex for checking MAC address format.
-                | MAC_REGEX_CHECK_5 - regex for checking MAC address format.
                 | __mac_address - MAC address object-instance container.
             :methods:
-                | __init__ - initial constructor.
                 | mac_address - property methods for MAC address.
                 | is_mac_address - check for MACAddress format.
-                | __str__ - dunder method for MACAddress.
     """
 
-    MAC_REGEX_CHECK_1 = '^([0-9A-Fa-f]{2}[:-])'
-    MAC_REGEX_CHECK_2 = '{5}([0-9A-Fa-f]{2})|'
-    MAC_REGEX_CHECK_3 = '([0-9a-fA-F]{4}\\.'
-    MAC_REGEX_CHECK_4 = '[0-9a-fA-F]{4}\\.'
-    MAC_REGEX_CHECK_5 = '[0-9a-fA-F]{4})$'
-
-    def __init__(self, mac_address: str):
-        """
-            Initial constructor.
-
-            :param mac_address: MAC address for checking.
-            :type mac_address: <str>
-            :return: None
-            :exceptions: None
-        """
-        self.__mac_address = mac_address
+    __mac_address: str
 
     @property
     def mac_address(self) -> str:
@@ -101,13 +88,7 @@ class MACAddress:
             :exceptions: None
         """
         compile_regex = (
-            ''.join([
-                MACAddress.MAC_REGEX_CHECK_1,
-                MACAddress.MAC_REGEX_CHECK_2,
-                MACAddress.MAC_REGEX_CHECK_3,
-                MACAddress.MAC_REGEX_CHECK_4,
-                MACAddress.MAC_REGEX_CHECK_5
-            ])
+            ''.join(['{0}'.format(mac_check.value) for mac_check in MacRegex])
         )
         patter_search = compile(compile_regex)
         if not bool(self.__mac_address):
@@ -116,13 +97,3 @@ class MACAddress:
             return True
         else:
             return False
-
-    def __str__(self) -> str:
-        """
-            Dunder method for MACAddress.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        """
-        return '{0} ({1})'.format(self.__class__.__name__, self.__mac_address)

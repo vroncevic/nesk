@@ -21,6 +21,7 @@
 """
 
 from os import geteuid
+from dataclasses import dataclass
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/nesk'
@@ -32,6 +33,7 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
+@dataclass
 class UserID:
     """
         Defined class UserID with attribute(s) and method(s).
@@ -42,22 +44,12 @@ class UserID:
                 | SUDO_USER_ID - root user id in Unix-like systems.
                 | __userid - user id object-instance container.
             :methods:
-                | __init__ - initial constructor.
                 | user_id - property methods for user id.
-                | is_root_user - check is root user.
-                | __str__ - dunder method for UserID.
+                | is_root - check is root user.
     """
 
     SUDO_USER_ID = 0
-
-    def __init__(self):
-        """
-            Initial constructor.
-
-            :return: None
-            :exceptions: None
-        """
-        self.__user_id = geteuid()
+    __user_id: int = geteuid()
 
     @property
     def user_id(self) -> int:
@@ -82,7 +74,7 @@ class UserID:
         """
         self.__user_id = user_id
 
-    def is_root_user(self) -> bool:
+    def is_root(self) -> bool:
         """
             Check is root user.
 
@@ -91,13 +83,3 @@ class UserID:
             :exceptions: None
         """
         return bool(self.__user_id == UserID.SUDO_USER_ID)
-
-    def __str__(self) -> str:
-        """
-            Dunder method for UserID.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        """
-        return '{0} ({1})'.format(self.__class__.__name__, self.__user_id)

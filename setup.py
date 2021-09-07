@@ -36,7 +36,7 @@ THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
 with open(join(THIS_DIR, 'README.md')) as readme:
     LONG_DESCRIPTION = readme.read()
 PROGRAMMING_LANG = 'Programming Language :: Python ::'
-VERSIONS = ['3', '3.2', '3.3', '3.4']
+VERSIONS = ['3.7', '3.8']
 SUPPORTED_PY_VERSIONS = [
     '{0} {1}'.format(PROGRAMMING_LANG, VERSION) for VERSION in VERSIONS
 ]
@@ -62,13 +62,17 @@ setup(
     license='GPL 2021 Free software to use and distributed it.',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    keywords='util, config, log, option, net, web',
+    keywords='net, web',
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
     packages=[
         'nesk',
+        'nesk.address',
         'nesk.arp',
-        'nesk.privilege'
+        'nesk.privilege',
+        'nesk.rarp',
+        'nesk.ndp',
+        'nesk.uuid'
     ],
-    install_requires=['colorama', 'bs4', 'PyYAML', 'configparser', 'pathlib']
+    install_requires=['colorama']
 )
