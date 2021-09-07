@@ -67,7 +67,8 @@ setup(
     classifiers=PYP_CLASSIFIERS,
     packages=[
         'nesk',
-        'nesk.arp'
+        'nesk.arp',
+        'nesk.privilege'
     ],
     install_requires=['colorama', 'bs4', 'PyYAML', 'configparser', 'pathlib']
 )
