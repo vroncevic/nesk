@@ -20,6 +20,8 @@
      Created API for getting/setting/checking IP address.
 """
 
+from dataclasses import dataclass
+
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/nesk'
 __credits__ = ['Vladimir Roncevic']
@@ -30,6 +32,7 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
+@dataclass
 class IPAddress:
     """
         Defined class IPAddress with attribute(s) and method(s).
@@ -39,23 +42,12 @@ class IPAddress:
             :attributes:
                 | __ip_address - IP address object-instance container.
             :methods:
-                | __init__ - initial constructor.
                 | ip_address - property methods for IP address.
                 | is_ipv4 - check IPv4 address format.
                 | is_ipv6 - check IPv6 address format.
-                | __str__ - dunder method for IPAddress.
     """
 
-    def __init__(self, ip_address: str):
-        """
-            Initial constructor.
-
-            :param ip_address: IP address for checking MAC address.
-            :type ip_address: <str>
-            :return: None
-            :exceptions: None
-        """
-        self.__ip_address = ip_address
+    __ip_address: str
 
     @property
     def ip_address(self) -> str:
@@ -120,13 +112,3 @@ class IPAddress:
         else:
             status.append(False)
         return all(status)
-
-    def __str__(self) -> str:
-        """
-            Dunder method for IPAddress.
-
-            :return: object in a human-readable format.
-            :rtype: <str>
-            :exceptions: None
-        """
-        return '{0} ({1})'.format(self.__class__.__name__, self.__ip_address)
