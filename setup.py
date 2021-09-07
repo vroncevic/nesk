@@ -72,7 +72,7 @@ setup(
         'nesk.privilege',
         'nesk.rarp',
         'nesk.ndp',
-        'nask.uuid'
+        'nesk.uuid'
     ],
     install_requires=['colorama']
 )
