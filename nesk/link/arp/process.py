@@ -21,13 +21,11 @@
 """
 
 import sys
-from subprocess import Popen
-from re import search, compile
 from dataclasses import dataclass
 
 try:
-    from nesk.address.ip_address import IPAddress
-    from nesk.address.mac_address import MACAddress
+    from nesk.utils.address import IPAddress
+    from nesk.utils.address import MACAddress
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################

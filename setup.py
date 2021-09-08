@@ -66,13 +66,20 @@ setup(
     platforms='POSIX',
     classifiers=PYP_CLASSIFIERS,
     packages=[
-        'nesk',
-        'nesk.address',
-        'nesk.arp',
-        'nesk.privilege',
-        'nesk.rarp',
-        'nesk.ndp',
-        'nesk.uuid'
+        'nesk', 'nesk.application', 'nesk.application',
+        'nesk.application.dhcp', 'nesk.application.dns',
+        'nesk.application.echo', 'nesk.application.ftp',
+        'nesk.application.http', 'nesk.application.imap',
+        'nesk.application.ntp', 'nesk.application.pop',
+        'nesk.application.ptp', 'nesk.application.rip',
+        'nesk.application.sip', 'nesk.application.smb',
+        'nesk.application.smtp', 'nesk.application.snmp',
+        'nesk.application.ssh', 'nesk.transport', 'nesk.network',
+        'nesk.network.ggp', 'nesk.network.icmp', 'nesk.network.igmp',
+        'nesk.link.arp','nesk.link.ndp', 'nesk.link.rarp', 'nesk.link.lldp',
+        'nesk.link.ospf', 'nesk.utils', 'nesk.utils.address',
+        'nesk.utils.privilege', 'nesk.utils.uuid', 'nesk.utils.wlan',
+        'nesk.utils.pcap'
     ],
     install_requires=['colorama']
 )
