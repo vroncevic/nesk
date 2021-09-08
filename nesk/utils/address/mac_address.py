@@ -25,7 +25,7 @@ from dataclasses import dataclass
 from re import compile, search
 
 try:
-    from nesk.address.mac_regex import MacRegex
+    from nesk.utils.address import MacRegex
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
